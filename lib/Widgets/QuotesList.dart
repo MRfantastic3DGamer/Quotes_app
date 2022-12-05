@@ -39,8 +39,8 @@ class _QuotesByAuthorState extends State<QuotesByAuthor> {
         ],
       );
     }
-    if (quotes.length <= 0) {
-      return Text("No Data");
+    if (quotes.isEmpty) {
+      return const Text("No Data");
     }
     return SizedBox(
       width: MediaQuery.of(context).size.width,
@@ -81,7 +81,6 @@ class _FavListState extends State<FavList> {
             .toList(),
       ],
     );
-    // Container();
   }
 }
 
@@ -181,8 +180,10 @@ class _QuotesByTagState extends State<QuotesByTag> {
               child: ListView(
                 primary: false,
                 children: [
-                  ...quotes.sublist(i, min(i + count, quotes.length)).map(
-                      (e) => QuoteTile(quote: e, like: true, delete: false))
+                  ...quotes
+                      .sublist(max(i, 0), min(i + count, quotes.length))
+                      .map(
+                          (e) => QuoteTile(quote: e, like: true, delete: false))
                 ],
               ),
             ),

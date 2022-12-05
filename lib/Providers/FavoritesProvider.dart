@@ -10,13 +10,16 @@ late Box favs;
 List<Quote> _quotes = [];
 
 class FavoritesProvider with ChangeNotifier {
-  UnmodifiableListView<Quote> get quotes => UnmodifiableListView(_quotes);
+  UnmodifiableListView<Quote> get quotes {
+    getItems();
+    return UnmodifiableListView(_quotes);
+  }
+
   final String quoteHiveBox = 'quote-box';
 
   // Create new quote
   Future<void> createItem(Quote quote) async {
     getItems();
-    log("createItem");
     Box<Quote> box = await Hive.openBox<Quote>(quoteHiveBox);
     if (!quotes.contains(quote)) {
       await box.add(quote);
@@ -37,7 +40,6 @@ class FavoritesProvider with ChangeNotifier {
 
   // Get quote
   Future<void> getItems() async {
-    log("get items");
     Box<Quote> box = await Hive.openBox<Quote>(quoteHiveBox);
     _quotes = box.values.toList();
     notifyListeners();

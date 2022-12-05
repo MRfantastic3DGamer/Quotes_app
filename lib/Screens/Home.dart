@@ -74,11 +74,11 @@ class _HomeState extends State<Home> {
                         Provider.of<PageProvider>(context, listen: false)
                             .setPage(0);
                         // Provider.of<SearchQueryProvider>(context, listen: false)
-                        //     .clearQuery();
+                        //     .changeQuery("");
                       });
-                      log(Provider.of<PageProvider>(context, listen: false)
-                          .currentPage
-                          .toString());
+                      // log(Provider.of<PageProvider>(context, listen: false)
+                      //     .currentPage
+                      //     .toString());
                     },
                   ),
                   GestureDetector(
@@ -102,11 +102,11 @@ class _HomeState extends State<Home> {
                         Provider.of<PageProvider>(context, listen: false)
                             .setPage(1);
                         // Provider.of<SearchQueryProvider>(context, listen: false)
-                        //     .clearQuery();
+                        //     .changeQuery("");
                       });
-                      log(Provider.of<PageProvider>(context, listen: false)
-                          .currentPage
-                          .toString());
+                      // log(Provider.of<PageProvider>(context, listen: false)
+                      //     .currentPage
+                      //     .toString());
                     },
                   ),
                   IconButton(
